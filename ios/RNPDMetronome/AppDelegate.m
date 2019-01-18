@@ -33,7 +33,22 @@
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+  
+  // Pure Data initiation
+  self.pd = [[PdAudioController alloc]init];
+  PdAudioStatus pdInit = [self.pd configureAmbientWithSampleRate:44100 numberChannels:2 mixingEnabled:YES];
+  if(pdInit != PdAudioOK){
+    NSLog(@"pd failed to initialize");
+  }
   return YES;
+}
+
+-(void)applicationWillResignActive:(UIApplication *)application {
+  self.pd.active = NO;
+}
+
+-(void)applicationDidBecomeActive:(UIApplication *)application {
+  self.pd.active = YES;
 }
 
 @end
