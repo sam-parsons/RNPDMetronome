@@ -1,3 +1,6 @@
 rootProject.name = 'RNPDMetronome'
 
 include ':app'
+include ':PdCore'
+include ':PdTest'
+
