@@ -10,6 +10,12 @@
 
 @implementation PDPatch
 
+RCT_EXPORT_MODULE()
+
+- (NSDictionary *)constantsToExport {
+  return @{@"patch": @"this from the pd patch"};
+}
+
 -(instancetype)initWithFile:(NSString *)pdFile{
   void *patch;
   self = [super init];

@@ -1,8 +1,13 @@
 import React, { PureComponent } from 'react';
 import {
-  Button, Text, Slider, View,
+  Button, Text, Slider, View, NativeModules,
 } from 'react-native';
 import styles from './App.style';
+
+console.log(NativeModules);
+
+const Metronome = NativeModules.Metronome;
+const PdPatch = NativeModules.PDPatch;
 
 export default class App extends PureComponent {
   state = {
@@ -14,6 +19,8 @@ export default class App extends PureComponent {
 
   componentWillMount() {
     // Metronome.prepareToPlay();
+    console.log(Metronome);
+    console.log(PdPatch);
   }
 
   componentDidMount() {
