@@ -9,9 +9,12 @@ import styles from './App.style';
 // Uncomment this if building ios
 const Metronome = NativeModules.PDInterface;
 
-// Uncomment this if building android
+// Uncomment this if building android   
 // let { Metronome } = NativeModules;
 
+
+// this seems not to work...most likely because the constant(s) is(are) instantiated in
+// an execution context seperate from the global execution/memory...??
 if (Platform.OS === 'ios') {
   console.log("ios");
   // const Metronome = NativeModules.PDInterface;
