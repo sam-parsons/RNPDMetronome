@@ -10,12 +10,6 @@
 
 @implementation PDPatch
 
-RCT_EXPORT_MODULE()
-
-- (NSDictionary *)constantsToExport {
-  return @{@"patch": @"this from the pd patch"};
-}
-
 -(instancetype)initWithFile:(NSString *)pdFile{
   void *patch;
   self = [super init];
@@ -26,6 +20,15 @@ RCT_EXPORT_MODULE()
     }
   }
   return self;
+}
+
+-(void)onOff:(BOOL)yesNo{
+  float yn = (float)yesNo;
+  [PdBase sendFloat:yn toReceiver:@"onOff"];
+}
+
+-(void)tempoChange:(float)tempo{
+  [PdBase sendFloat:tempo toReceiver:@"tempoChange"];
 }
 
 @end

@@ -6,39 +6,36 @@ import styles from './App.style';
 
 console.log(NativeModules);
 
-const Metronome = NativeModules.Metronome;
-const PdPatch = NativeModules.PDPatch;
+const PDInterface = NativeModules.PDInterface;
 
 export default class App extends PureComponent {
   state = {
     tempo: 120,
-    meter: 4,
-    eighthNoteVolume: 0,
-    accentedMIDINote: 92,
-  };
+    playing: false
+  }
 
   componentWillMount() {
-    // Metronome.prepareToPlay();
-    console.log(Metronome);
-    console.log(PdPatch);
+    console.log(PDInterface);
   }
 
   componentDidMount() {
-    // console.log(Metronome);
+    PDInterface.initMetronome();
   }
 
-  pressPlay = () => {
-    // Metronome.pressPlay();
-  };
-
-  pressStop = () => {
-    // Metronome.pressStop();
-  };
+  pressPlayStop = () => {
+    console.log("play button pressed");
+    PDInterface.onSwitchChange();
+    const temp = !this.state.playing;
+    this.setState({playing: temp}, () => {
+      console.log(this.state.playing);
+    });
+  }
 
   // ?? Should NM.M.onTempoChange() be inside the callback of setState()?
   onTempoChange(value) {
     this.setState({ tempo: value }, () => {
       console.log(`tempo: ${value}`);
+      PDInterface.onTempoChange(value);
       // Metronome.onTempoChange(value);
     });
   }
@@ -55,13 +52,10 @@ export default class App extends PureComponent {
         onValueChange={ (value) => this.onTempoChange(value) }
       />
       <Button
-        title='Play'
-        onPress={ this.pressPlay }
-      />
-      <Button
-        title='Stop'
-        onPress={ this.pressStop }
-      />
+        title = { this.state.playing ? "Stop" : "Play" }
+        onPress={ () => this.pressPlayStop() }
+      >
+      </Button>
     </View>
   );
 }

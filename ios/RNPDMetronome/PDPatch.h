@@ -8,13 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import "PdDispatcher.h"
-#import "React/RCTBridgeModule.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PDPatch : NSObject <RCTBridgeModule>
+@interface PDPatch : NSObject
 
 -(instancetype)initWithFile:(NSString *)pdFile;
+
+-(void)onOff:(BOOL)yesNo;
+
+-(void)tempoChange:(float)tempo;
 
 @end
 
