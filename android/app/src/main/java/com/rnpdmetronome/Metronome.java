@@ -42,7 +42,7 @@ public class Metronome extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void initMetronome() {
-        System.out.println("metronome initiated");
+        System.out.println("metronome initiated when app started");
     }
 
     @ReactMethod

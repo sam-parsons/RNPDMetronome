@@ -1,12 +1,24 @@
 import React, { PureComponent } from 'react';
 import {
-  Button, Text, Slider, View, NativeModules,
+  Button, Text, Slider, View, NativeModules, Platform,
 } from 'react-native';
 import styles from './App.style';
 
-// // const PDInterface = NativeModules.PDInterface;
+// ?? How to separate the constant declaration based on platform??
 
-const { Metronome } = NativeModules;
+// Uncomment this if building ios
+const Metronome = NativeModules.PDInterface;
+
+// Uncomment this if building android
+// let { Metronome } = NativeModules;
+
+if (Platform.OS === 'ios') {
+  console.log("ios");
+  // const Metronome = NativeModules.PDInterface;
+} else {
+  console.log("android");
+  // const { Metronome } = NativeModules;
+}
 
 export default class App extends PureComponent {
   state = {
@@ -14,20 +26,14 @@ export default class App extends PureComponent {
     playing: false
   }
 
-  componentWillMount() {
-    // console.log(PDInterface);
-  }
-
   componentDidMount() {
     console.log(Metronome);
     Metronome.initMetronome();
-    // PDInterface.initMetronome();
   }
 
   pressPlayStop = () => {
     console.log("play button pressed");
     Metronome.onSwitchChange();
-    // PDInterface.onSwitchChange();
     const temp = !this.state.playing;
     this.setState({playing: temp}, () => {
       console.log(this.state.playing);
@@ -38,7 +44,6 @@ export default class App extends PureComponent {
   onTempoChange(value) {
     this.setState({ tempo: value }, () => {
       console.log(`tempo: ${value}`);
-      // PDInterface.onTempoChange(value);
       Metronome.onTempoChange(value);
     });
   }
