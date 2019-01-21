@@ -20,9 +20,7 @@ public class MetronomePackage implements ReactPackage {
     public List<NativeModule> createNativeModules(
             ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
-
         modules.add(new Metronome(reactContext));
-
         return modules;
     }
 

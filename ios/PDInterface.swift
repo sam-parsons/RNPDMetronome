@@ -31,7 +31,7 @@ class PDInterface: NSObject {
   @objc
   public func onTempoChange(_ value: Int) {
     print("changing tempo to: ", value)
-    var temp = Float(value)
+    let temp = Float(value)
     patch?.tempoChange(temp)
   }
   
@@ -40,5 +40,4 @@ class PDInterface: NSObject {
     print("metronome initiated")
     patch = PDPatch(file: "main.pd")
   }
-  
 }

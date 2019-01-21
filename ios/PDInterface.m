@@ -10,11 +10,7 @@
 #import "React/RCTBridgeModule.h"
 
 @interface RCT_EXTERN_MODULE(PDInterface, NSObject)
-
 RCT_EXTERN_METHOD(initMetronome)
-
 RCT_EXTERN_METHOD(onSwitchChange)
-
 RCT_EXTERN_METHOD(onTempoChange:(NSInteger *) value)
-
 @end

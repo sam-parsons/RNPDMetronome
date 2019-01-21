@@ -14,9 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface PDPatch : NSObject
 
 -(instancetype)initWithFile:(NSString *)pdFile;
-
 -(void)onOff:(BOOL)yesNo;
-
 -(void)tempoChange:(float)tempo;
 
 @end

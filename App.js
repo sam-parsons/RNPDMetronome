@@ -4,9 +4,9 @@ import {
 } from 'react-native';
 import styles from './App.style';
 
-console.log(NativeModules);
+// // const PDInterface = NativeModules.PDInterface;
 
-const PDInterface = NativeModules.PDInterface;
+const { Metronome } = NativeModules;
 
 export default class App extends PureComponent {
   state = {
@@ -15,16 +15,19 @@ export default class App extends PureComponent {
   }
 
   componentWillMount() {
-    console.log(PDInterface);
+    // console.log(PDInterface);
   }
 
   componentDidMount() {
-    PDInterface.initMetronome();
+    console.log(Metronome);
+    Metronome.initMetronome();
+    // PDInterface.initMetronome();
   }
 
   pressPlayStop = () => {
     console.log("play button pressed");
-    PDInterface.onSwitchChange();
+    Metronome.onSwitchChange();
+    // PDInterface.onSwitchChange();
     const temp = !this.state.playing;
     this.setState({playing: temp}, () => {
       console.log(this.state.playing);
@@ -35,8 +38,8 @@ export default class App extends PureComponent {
   onTempoChange(value) {
     this.setState({ tempo: value }, () => {
       console.log(`tempo: ${value}`);
-      PDInterface.onTempoChange(value);
-      // Metronome.onTempoChange(value);
+      // PDInterface.onTempoChange(value);
+      Metronome.onTempoChange(value);
     });
   }
 
