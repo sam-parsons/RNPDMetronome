@@ -1,4 +1,6 @@
 rootProject.name = 'RNPDMetronome'
+include ':react-native-test-library'
+project(':react-native-test-library').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-test-library/android')
 
 include ':app'
 include ':PdCore'

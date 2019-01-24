@@ -25,7 +25,6 @@ export default class App extends PureComponent {
     });
   }
 
-  // ?? Should NM.M.onTempoChange() be inside the callback of setState()?
   onTempoChange(value) {
     this.setState({ tempo: value }, () => {
       console.log(`tempo: ${value}`);
